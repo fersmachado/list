@@ -1,17 +1,22 @@
+import { ChangeEventHandler } from "react";
 import { Container } from "./style";
 
 interface IInput {
-    text: string;
+    placeholder?: string;
+    onChange: ChangeEventHandler<HTMLInputElement>
+    value: string;
 }
 
-function Input(params:IInput) {
-    const {text} = params;
+function Input(params: IInput) {
+    const { placeholder, onChange, value } = params;
     return (
-        <Container>
-            {text}
-        </Container>
+        <Container
+            placeholder={placeholder}
+            onChange={onChange}
+            value={value}
+        />
     )
-    
+
 }
 
 export default Input;

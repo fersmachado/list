@@ -1,14 +1,18 @@
 import { Container } from "./style";
 
+export type ButtonVariant = "circle" | "primary" | "neutral"
+
 interface IButton {
-    text: string;
+    children: string | React.ReactNode
+    variant: ButtonVariant
+    onClick?: () => void
 }
 
 function Button(params:IButton) {
-    const {text} = params;
+    const {children, onClick, variant} = params;
     return (
-        <Container>
-            {text}
+        <Container variant={variant} onClick={onClick}>
+            {children}
         </Container>
     )
     
