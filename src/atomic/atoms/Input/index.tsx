@@ -4,7 +4,7 @@ import { Container } from "./style";
 interface IInput {
     placeholder?: string;
     onChange: ChangeEventHandler<HTMLInputElement>
-    value: string;
+    value?: string;
 }
 
 function Input(params: IInput) {

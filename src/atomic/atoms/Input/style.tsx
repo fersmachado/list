@@ -9,5 +9,5 @@ export const Container = styled.input`
     border: 1px solid ${(props) => props.theme.colors.neutral[3]};
     
     
-    
+
 `
