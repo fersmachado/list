@@ -4,7 +4,7 @@ import { Container } from "./style";
 interface ITypography {
     variant: TypographyTypes
     children: string
-    bold: boolean
+    bold?: boolean
     color: ColorsTypes
 }
 
