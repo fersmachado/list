@@ -1,13 +1,16 @@
 import Typography from "../../../../atomic/atoms/Typography";
+import {Container} from "./styled";
 
 function ListAddSelected() {
 
     return (
-        <div>
+        <Container>
             <Typography variant="h1" color="primary/1">
                 Ja ta no carrinho
             </Typography>
-        </div>
+        </Container>
+
+        
     )
 }
 

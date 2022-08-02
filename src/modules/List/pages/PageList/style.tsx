@@ -11,11 +11,11 @@ export const Container = styled.div`
 `
 
 export const Left = styled.div`
-    flex: 1;
+    flex: 2;
 `
 
 export const Right = styled.div`
-    flex: 1;
+    flex: 2;
 `
 
 export const ContainerButtonAdd = styled.div`

@@ -1,5 +1,6 @@
 import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 import { useRef } from "react";
 import Button from "../../../../atomic/atoms/Button";
 import Modal, { IModalRef } from "../../../../atomic/organisms/Modal";
@@ -12,11 +13,26 @@ interface IPageList {
 }
 
 function PageList(params: IPageList) {
-    //a logica fica nesse carinha :D
+    const [item, setItem] = useState ([])
+
     const ModalRef = useRef<IModalRef>(null);
-    const onAdd = () => {
+    const onOpen = () => {
         ModalRef.current?.open({})
     }
+
+    const onAdd = (value: string) => {
+        if (value == ""){
+            alert("obrigatório preencher!")
+        } else {
+            setItem([
+                ...item, {
+                    value
+                }
+            ])
+        }
+        
+    }
+    console.log(onAdd)
 
     return (
         <Container>
@@ -29,11 +45,11 @@ function PageList(params: IPageList) {
             </Right>
 
             <ContainerButtonAdd>
-                <Button variant="circle" onClick={onAdd} >
+                <Button variant="circle" onClick={onOpen} >
                     <FontAwesomeIcon icon={faAdd} />
                 </Button>
             </ContainerButtonAdd>
-            <Modal ref={ModalRef} title="Modal" />
+            <Modal ref={ModalRef} title="Modal" onAdd={onAdd} />
 
         </Container>
     )

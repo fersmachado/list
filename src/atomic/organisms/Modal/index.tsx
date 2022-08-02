@@ -1,19 +1,24 @@
 
-import { Container, Overlay } from "./style";
+import { Container, Overlay, ContainerButton } from "./style";
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import Input from "../../atoms/Input";
 import Button from "../../atoms/Button";
 import Typhography from "../../atoms/Typography";
 
+
 interface IModal {
   title?: string;
+  value?: string;
+  onAdd?: (value: string) => void
 }
 
 export interface IModalRef {
   open: (params: IModal) => void
 }
 
-function Modal(p: IModal, ref: IModalRef) {
+function Modal(params: IModal, ref: IModalRef) {
+  const {onAdd = () => {} } = params;
+
 
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [input, SetInput] = useState<string>("")
@@ -32,6 +37,7 @@ function Modal(p: IModal, ref: IModalRef) {
 
   const handleAdd = () => {
     setIsModalVisible(false);
+    onAdd(input);
   };
 
   const handleCancel = () => {
@@ -49,19 +55,32 @@ function Modal(p: IModal, ref: IModalRef) {
       }
     }}>
       <Container isModalVisible={isModalVisible} id="Modal">
-        <Typhography color="primary/4" bold variant="p2">
+
+        <Typhography color="primary/4" variant="p2">
           Qual item você quer adicionar a sua lista?
         </Typhography>
+
+        <br></br>
         <Input placeholder="Adicionar novo item" onChange={(e) => {
           onChange(e.target.value);
+        }} value={input}/>
 
-        }} value={input} />
-        <Button variant="neutral" onClick={handleCancel}  >
-          Cancelar
-        </Button>
-        <Button variant="primary" onClick={handleAdd} >
-          Adicionar
-        </Button>
+        <br></br>
+        <ContainerButton>
+
+          <Button variant="neutral" onClick={handleCancel} >
+            <Typhography color="neutral/3" variant="p2" >
+              Cancelar
+            </Typhography>
+          </Button>
+
+          <Button variant="primary" onClick={handleAdd} >
+            <Typhography color="neutral/4" variant="p2">
+              Adicionar
+            </Typhography>           
+          </Button>          
+        </ContainerButton>
+
       </Container>
     </Overlay>
 

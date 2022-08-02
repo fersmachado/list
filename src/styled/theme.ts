@@ -9,8 +9,8 @@ export const defaultTheme: DefaultTheme = {
     
     typography: {
         h1: "30px",
-        p1: "16px",
-        p2: "14px",
+        p1: "20px",
+        p2: "16px",
     },
 
     colors: {

@@ -8,6 +8,7 @@ export const Container = styled.div<{ isModalVisible: boolean }>`
     height: 181px;
     padding: 12px;
     border-radius: 2px;
+    white-space: nowrap;
 
 
 
@@ -23,6 +24,13 @@ export const Container = styled.div<{ isModalVisible: boolean }>`
     }}
 
 `
+export const ContainerButton = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    gap: 18px;
+    
+`
+
 
 export const Overlay = styled.div`
     top: 0;

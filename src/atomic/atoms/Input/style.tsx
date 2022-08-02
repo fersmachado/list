@@ -7,7 +7,7 @@ export const Container = styled.input`
     flex-direction: row;
     align-items: flex-start;
     border: 1px solid ${(props) => props.theme.colors.neutral[3]};
-    
+    width: 100%;
     
 
 `

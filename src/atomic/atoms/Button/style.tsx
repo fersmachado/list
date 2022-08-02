@@ -31,6 +31,12 @@ export const Container = styled.button<{variant: ButtonVariant}>`
                 border-radius: 2px;
                 border: none;
                 height: 32px;
+                width: 94px;
+                left: 163px;
+                top: 120px;
+
+
+               
 
                 &:hover {
                     background: ${props.theme.colors.primary[2]};
@@ -44,6 +50,9 @@ export const Container = styled.button<{variant: ButtonVariant}>`
             border: 1px solid #979797;
             border-radius: 2px;
             height: 32px;
+            width: 94px;
+            left: 163px;
+            top: 120px;
 
             &:hover {
                 border-color: ${props.theme.colors.primary[1]};
