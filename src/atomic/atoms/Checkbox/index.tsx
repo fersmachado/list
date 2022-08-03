@@ -8,14 +8,14 @@ interface ICheckbox {
 
 }
 
-function Checkbox (params:ICheckbox) {
-    const {onChange, checked, children} = params;
+function Checkbox(params: ICheckbox) {
+    const { onChange, checked, children } = params;
     return (
-        <Container onChange={onChange} checked={checked} type="checkbox" > 
-        {children}
-        </Container>
+        <div>
+            <Container onChange={onChange} checked={checked} type="checkbox" />
+            <label >{children}</label>
+        </div>
     )
-    
 }
 
 export default Checkbox

@@ -1,15 +1,18 @@
-import { INTERNALS } from "next/dist/server/web/spec-extension/request";
-import Checkbox from "../../../../atomic/atoms/Checkbox";
+
 import Typography from "../../../../atomic/atoms/Typography";
 import ItemTask from "../../../../atomic/organisms/ItemTask";
+import { IItemTask } from "../../interfaces";
 import { Container } from "./styled";
 
 interface IListAdd {
-    
+    items: IItemTask[]
+    onEdit: (id: string) => void
+    onRemove: (id: string) => void
+    onCheck: (id: string) => void
 }
 
 function ListAdd(params: IListAdd) {
-    const {} = params;
+    const { items = [], onEdit, onRemove, onCheck } = params;
 
     return (
         <Container>
@@ -17,20 +20,18 @@ function ListAdd(params: IListAdd) {
                 Precisa pegar
             </Typography>
             {
-                itens.maps(item => {
+                items.map(item => {
                     return (
-                        <ItemTask 
-                            value={item.value}
-                        />   
+                        <ItemTask
+                            key={item.id}
+                            item={item}
+                            onEdit={onEdit}
+                            onRemove={onRemove}
+                            onCheck={onCheck}
+                        />
                     )
                 })
-                
-                
-                         
             }
-
-            
-
         </Container>
     )
 }

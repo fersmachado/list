@@ -60,12 +60,14 @@ function Modal(params: IModal, ref: IModalRef) {
           Qual item você quer adicionar a sua lista?
         </Typhography>
 
-        <br></br>
+        <br/>
         <Input placeholder="Adicionar novo item" onChange={(e) => {
           onChange(e.target.value);
         }} value={input}/>
 
-        <br></br>
+        <br/>
+        <br/>
+             
         <ContainerButton>
 
           <Button variant="neutral" onClick={handleCancel} >
