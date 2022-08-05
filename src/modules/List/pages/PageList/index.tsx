@@ -39,7 +39,23 @@ function PageList(params: IPageList) {
     }
 
     const onEdit = (id: string) => {
+        let item = items.find((item) => item.id == id);
+        ModalRef.current?.open({
+            edit: true,
+            value: item?.value,
+            onSave: (value: string) => {
+                let newItens = items.map((item) => {
+                    if (item.id == id) {
+                        item.value = value
+                        return item;
+                    } else {
+                        return item;
+                    }
+                })
 
+                setItems(newItens);
+            }
+        })
     }
 
     const onRemove = (id: string) => {
@@ -71,7 +87,7 @@ function PageList(params: IPageList) {
         <Container>
             <Left>
                 <ListAdd
-                    items={items.filter((item) => item.checked == false )}
+                    items={items.filter((item) => item.checked == false)}
                     onEdit={onEdit}
                     onRemove={onRemove}
                     onCheck={onCheck}
@@ -81,7 +97,7 @@ function PageList(params: IPageList) {
 
             <Right>
                 <ListAddSelected
-                    items={items.filter((item) => item.checked == true )}
+                    items={items.filter((item) => item.checked == true)}
                     onEdit={onEdit}
                     onRemove={onRemove}
                     onCheck={onCheck}
