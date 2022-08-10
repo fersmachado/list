@@ -1,0 +1,28 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs';
+import Button from './index.tsx';
+
+
+<Meta title="Components/Button" component={Button} />
+
+export const Template = (args) => <Button (...args) />
+
+
+# Button
+
+<Canvas>
+    <Story
+    name="Circle"
+    args={{
+        label: "Circle",
+        variant: "circle",
+        children: "botaozito"
+        
+    }}>
+    {Template.bind{{
+
+    }}}
+    
+    </Story>
+</Canvas>
+
+ 

@@ -2,10 +2,10 @@ import styled from "styled-components"
 
 export const Container = styled.input`
     display: flex;
-    width: 16px;
-    height: 16px;
+    width: 15px;
+    height: 15px;
     border-radius: 1px;
-    background: ${(props) => props.theme.colors.neutral[4]};
+    background: ${(props) => props.theme.colors.primary[2]};
     border: 1px solid ${(props) => props.theme.colors.neutral[3]};
 
     &::selection{

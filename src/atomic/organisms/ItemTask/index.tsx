@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { IItemTask } from "../../../modules/List/interfaces";
 import Checkbox from "../../atoms/Checkbox";
-import { Container } from "./styled";
+import { Container, ContentCheckbox, ContentIcon } from "./styled";
 
 interface _IItemTask {
     item: IItemTask
@@ -17,11 +17,18 @@ function ItemTask(params: _IItemTask) {
 
     return (
         <Container>
-            <Checkbox checked={item.checked} onChange={() => onCheck(item.id)} >
-                {item.value}
-            </Checkbox>
-            <FontAwesomeIcon icon={faTrash} onClick={() => onRemove(item.id)} />
-            <FontAwesomeIcon icon={faPen} onClick={() => onEdit(item.id)}/>
+            <ContentCheckbox>
+                <Checkbox checked={item.checked} onChange={() => onCheck(item.id)} >
+                    {item.value}
+                </Checkbox>
+            </ContentCheckbox>
+
+            <ContentIcon>
+                <FontAwesomeIcon icon={faTrash} onClick={() => onRemove(item.id)} />
+                <FontAwesomeIcon icon={faPen} onClick={() => onEdit(item.id)}/>
+            </ContentIcon>
+            
+            
         </Container>
     )
 }

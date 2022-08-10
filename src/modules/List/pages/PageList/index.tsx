@@ -1,5 +1,6 @@
 import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { INTERNALS } from "next/dist/server/web/spec-extension/request";
 import { useState } from "react";
 import { useRef } from "react";
 import Button from "../../../../atomic/atoms/Button";
@@ -39,6 +40,24 @@ function PageList(params: IPageList) {
     }
 
     const onEdit = (id: string) => {
+        let item = items.find((item) => item.id == id)
+        ModalRef.current?.open({
+            edit: true,
+            value: item?.value,
+            onSave: (value: string) => {
+                let newItems = items.map((item) => {
+                    if (item.id == id) {
+                        item.value = value
+                        return item;
+                    } else { 
+                        return item;
+                    }
+
+                })
+
+                setItems(newItems);
+            }
+        })
 
     }
 
@@ -79,6 +98,7 @@ function PageList(params: IPageList) {
                 />
             </Left>
 
+
             <Right>
                 <ListAddSelected
                     items={items.filter((item) => item.checked == true )}
@@ -90,10 +110,11 @@ function PageList(params: IPageList) {
 
             <ContainerButtonAdd>
                 <Button variant="circle" onClick={onOpen} >
-                    <FontAwesomeIcon icon={faAdd} />
+                    <FontAwesomeIcon icon={faAdd} style={{fontSize: "30px"}} />
                 </Button>
             </ContainerButtonAdd>
             <Modal ref={ModalRef} title="Modal" onAdd={onAdd} />
+            
 
         </Container>
     )

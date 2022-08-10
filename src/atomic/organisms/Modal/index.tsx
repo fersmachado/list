@@ -12,16 +12,24 @@ interface IModal {
   onAdd?: (value: string) => void
 }
 
-export interface IModalRef {
-  open: (params: IModal) => void
+interface IModalOpen {
+  edit?: boolean;
+  value?: string;
+  onSave?: (value: string) => void;
 }
 
+export interface IModalRef {
+  open: (params: IModalOpen) => void
+}
+
+
 function Modal(params: IModal, ref: IModalRef) {
-  const {onAdd = () => {} } = params;
+  const {onAdd = () => {}} = params;
 
 
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-  const [input, SetInput] = useState<string>("")
+  const [input, SetInput] = useState<string>("");
+  const [edit, SetEdit] = useState<IModalOpen>();
 
   const onChange = (value: string) => {
     SetInput(value)
@@ -30,18 +38,34 @@ function Modal(params: IModal, ref: IModalRef) {
 
   //@ts-ignore
   useImperativeHandle(ref, () => ({
-    open(params: IModal) {
-      setIsModalVisible(true);
+    open(params: IModalOpen) {
+      SetEdit ({
+        edit: params.edit,
+        value: params.value,
+        onSave: params.onSave
+      })
+      if (params.edit && params.value) {
+        SetInput(params.value)
+      }      
+      setIsModalVisible(true); 
     }
   }))
+  
+  console.log(edit);
 
   const handleAdd = () => {
     setIsModalVisible(false);
-    onAdd(input);
+    if (edit?.edit && edit.onSave) {
+      edit.onSave(input)
+    } else {
+      onAdd(input);      
+    }
+
   };
 
   const handleCancel = () => {
     setIsModalVisible(false);
+    SetInput("");
   };
 
   if (isModalVisible == false) return null
@@ -57,7 +81,7 @@ function Modal(params: IModal, ref: IModalRef) {
       <Container isModalVisible={isModalVisible} id="Modal">
 
         <Typhography color="primary/4" variant="p2">
-          Qual item você quer adicionar a sua lista?
+          {edit?.edit ? "Adicione novo item a lista" : "Qual item você quer adicionar a sua lista?"}
         </Typhography>
 
         <br/>
@@ -71,14 +95,14 @@ function Modal(params: IModal, ref: IModalRef) {
         <ContainerButton>
 
           <Button variant="neutral" onClick={handleCancel} >
-            <Typhography color="neutral/3" variant="p2" >
+            <Typhography color="neutral/3" variant="p2">
               Cancelar
             </Typhography>
           </Button>
 
           <Button variant="primary" onClick={handleAdd} >
             <Typhography color="neutral/4" variant="p2">
-              Adicionar
+              {edit?.edit ? "Salvar" : "Adicionar"}
             </Typhography>           
           </Button>          
         </ContainerButton>
