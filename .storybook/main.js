@@ -1,4 +1,4 @@
-modulo.exports {
+module.exports {
   "stories": [
     "../src/**/*.stories.mdx",
     "../src/**/*.stories.@(js|jsx|ts|tsx)"
@@ -11,6 +11,6 @@ modulo.exports {
   "framework": "@storybook/react",
   "core": {
     "builder": "@storybook/builder-webpack5"
-  }
+  },
 }
 
