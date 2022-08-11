@@ -1,4 +1,4 @@
-export default {
+modulo.exports {
   "stories": [
     "../src/**/*.stories.mdx",
     "../src/**/*.stories.@(js|jsx|ts|tsx)"
@@ -13,3 +13,4 @@ export default {
     "builder": "@storybook/builder-webpack5"
   }
 }
+
