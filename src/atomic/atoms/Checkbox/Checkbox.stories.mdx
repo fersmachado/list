@@ -1,0 +1,22 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs';
+import Checkbox from './index.tsx';
+
+
+<Meta title="components/Checkbox" component={Checkbox} />
+
+export const Template = (args) => <Checkbox {...args} />
+
+# Checkbox
+
+<Canvas>
+    <Story
+    name="rere"
+    args={{
+       
+        children: "Checkbox"
+    }}>
+    {Template.bind({
+        
+    })}
+    </Story>
+</Canvas>

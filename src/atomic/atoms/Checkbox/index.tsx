@@ -15,7 +15,9 @@ function Checkbox(params: ICheckbox) {
             <Container onChange={onChange} checked={checked} type="checkbox" />
             <label >{children}</label>
         </div>
+
+
     )
 }
 
-export default Checkbox
+export default Checkbox;
