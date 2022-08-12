@@ -2,23 +2,20 @@ import Typography from "../../../../atomic/atoms/Typography";
 import ItemTask from "../../../../atomic/organisms/ItemTask";
 import {Container} from "./styled";
 import {IItemTask} from "../../interfaces";
+import { useTaskContext } from "../../contexts/TaskContext";
 
 interface IListSelect {
-    items: IItemTask[]
-    onEdit: (id: string) => void
-    onRemove: (id: string) => void
-    onCheck: (id: string) => void
+   
 }
 function ListAddSelected(params: IListSelect) {
-    const { items = [], onEdit, onRemove, onCheck } = params;
-
+    const { items = [], onEdit, onRemove, onCheck } = useTaskContext();
 
     return (
         <Container>
             <Typography variant="h1" color="primary/1">
                 Ja ta no carrinho
             </Typography> {
-                items.map(item => {
+                items.filter(item => item.checked).map(item => {
                     return (
                         <ItemTask
                             key={item.id}
@@ -31,8 +28,6 @@ function ListAddSelected(params: IListSelect) {
                 })
             }
         </Container>
-
-        
     )
 }
 

@@ -1,18 +1,15 @@
 
 import Typography from "../../../../atomic/atoms/Typography";
 import ItemTask from "../../../../atomic/organisms/ItemTask";
+import { useTaskContext } from "../../contexts/TaskContext";
 import { IItemTask } from "../../interfaces";
 import { Container } from "./styled";
 
 interface IListAdd {
-    items: IItemTask[]
-    onEdit: (id: string) => void
-    onRemove: (id: string) => void
-    onCheck: (id: string) => void
 }
 
 function ListAdd(params: IListAdd) {
-    const { items = [], onEdit, onRemove, onCheck } = params;
+    const { items = [], onEdit, onRemove, onCheck } = useTaskContext();
 
     return (
         <Container>
@@ -20,7 +17,7 @@ function ListAdd(params: IListAdd) {
                 Precisa pegar
             </Typography>
             {
-                items.map(item => {
+                items.filter(item => !item.checked).map(item => {
                     return (
                         <ItemTask
                             key={item.id}

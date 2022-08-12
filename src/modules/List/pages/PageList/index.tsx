@@ -1,4 +1,5 @@
 import { faAdd } from "@fortawesome/free-solid-svg-icons";
+//@ts-ignore
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { INTERNALS } from "next/dist/server/web/spec-extension/request";
 import { useState } from "react";
@@ -8,6 +9,7 @@ import Modal, { IModalRef } from "../../../../atomic/organisms/Modal";
 import generateId from "../../../../helpers/generateId";
 import ListAdd from "../../components/ListAdd";
 import ListAddSelected from "../../components/ListAddSelected";
+import { TaskContext } from "../../contexts/TaskContext";
 import { IItemTask } from "../../interfaces";
 import { Container, ContainerButtonAdd, Left, Right } from "./style";
 
@@ -49,7 +51,7 @@ function PageList(params: IPageList) {
                     if (item.id == id) {
                         item.value = value
                         return item;
-                    } else { 
+                    } else {
                         return item;
                     }
 
@@ -87,36 +89,27 @@ function PageList(params: IPageList) {
     }
 
     return (
-        <Container>
-            <Left>
-                <ListAdd
-                    items={items.filter((item) => item.checked == false )}
-                    onEdit={onEdit}
-                    onRemove={onRemove}
-                    onCheck={onCheck}
-
-                />
-            </Left>
-
-
-            <Right>
-                <ListAddSelected
-                    items={items.filter((item) => item.checked == true )}
-                    onEdit={onEdit}
-                    onRemove={onRemove}
-                    onCheck={onCheck}
-                />
-            </Right>
-
-            <ContainerButtonAdd>
-                <Button variant="circle" onClick={onOpen} >
-                    <FontAwesomeIcon icon={faAdd} style={{fontSize: "30px"}} />
-                </Button>
-            </ContainerButtonAdd>
-            <Modal ref={ModalRef} title="Modal" onAdd={onAdd} />
-            
-
-        </Container>
+        <TaskContext.Provider value={{
+            items,
+            onCheck,
+            onEdit,
+            onRemove
+        }}>
+            <Container>
+                <Left>
+                    <ListAdd />
+                </Left>
+                <Right>
+                    <ListAddSelected />
+                </Right>
+                <ContainerButtonAdd>
+                    <Button variant="circle" onClick={onOpen} >
+                        <FontAwesomeIcon icon={faAdd} style={{ fontSize: "30px" }} />
+                    </Button>
+                </ContainerButtonAdd>
+                <Modal ref={ModalRef} title="Modal" onAdd={onAdd} />
+            </Container>
+        </TaskContext.Provider>
     )
 }
 
