@@ -1,7 +1,6 @@
 import styled from "styled-components"
 
 export const Container = styled.input`
-    display: flex;
     width: 15px;
     height: 15px;
     border-radius: 1px;

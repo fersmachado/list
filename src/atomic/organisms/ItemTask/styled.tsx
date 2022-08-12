@@ -4,7 +4,9 @@ export const Container = styled.li`
     display: flex;
     justify-content: space-between;
     justify-items: center;
-    padding: 8px;
+    padding: 10px;
+    margin-left: 10px;
+    
 
     
 `
