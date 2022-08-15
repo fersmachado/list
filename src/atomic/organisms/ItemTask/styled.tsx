@@ -4,11 +4,9 @@ export const Container = styled.li`
     display: flex;
     justify-content: space-between;
     justify-items: center;
-    padding: 10px;
-    margin-left: 10px;
-    
-
-    
+    padding: 8px;
+    width: 100%;
+        
 `
 
 export const ContentCheckbox = styled.div`
@@ -20,6 +18,8 @@ export const ContentCheckbox = styled.div`
 
 export const ContentIcon = styled.div`
     color: ${(props) => props.theme.colors.neutral[3]};
+    display: flex;
+    gap: 16px;
     
     &:hover {color: ${(props) => props.theme.colors.primary[2]}};
     

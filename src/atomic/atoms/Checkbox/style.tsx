@@ -1,6 +1,11 @@
 import styled from "styled-components"
 
-export const Container = styled.input`
+export const Container = styled.div`
+    display: flex;
+    gap: 16px
+`
+
+export const Content = styled.input`
     width: 15px;
     height: 15px;
     border-radius: 1px;

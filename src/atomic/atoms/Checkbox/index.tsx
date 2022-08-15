@@ -1,5 +1,5 @@
 import { ChangeEventHandler } from "react";
-import { Container } from "./style";
+import { Container, Content } from "./style";
 
 interface ICheckbox {
     onChange: ChangeEventHandler<HTMLInputElement>;
@@ -11,10 +11,10 @@ interface ICheckbox {
 function Checkbox(params: ICheckbox) {
     const { onChange, checked, children } = params;
     return (
-        <div>
-            <Container onChange={onChange} checked={checked} type="checkbox" />
-            <label >{children}</label>
-        </div>
+        <Container>
+            <Content onChange={onChange} checked={checked} type="checkbox" />
+            <label>{children}</label>
+        </Container>
 
 
     )

@@ -3,14 +3,14 @@ import styled from "styled-components";
 export const Container = styled.div`
     display: flex;
     gap: 30px;
-    padding-top: 24px;
+    padding-top: 16px;
  
     @media only screen and (max-width: 1000px) {
         flex-direction: column;
     }   
 `
 
-
+    
 export const Left = styled.div`
     flex: 1;
 
